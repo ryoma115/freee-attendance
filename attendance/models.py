@@ -1,23 +1,23 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-
+from django.contrib.auth.models import User
 class SubmitAttendance(models.Model):
 
     class Meta:
         db_table = 'attendance'
 
     PLACES = (
-        (1, 'オフィス'),
-        (2, '自宅'),
-        (3, 'コワーキングスペース'),
-        (4, '出張先'),
-        (5, 'その他'),
+        (0, 'オフィス'),
+        (1, '自宅'),
+        (2, 'コワーキングスペース'),
+        (3, '出張先'),
+        (4, 'その他'),
     )
     IN_OUT = (
         (0, '出勤'),
         (1, '退勤'),
         (2, '休憩 始'),
-        (2, '休憩 終')
+        (3, '休憩 終')
     )
 
     employee = models.ForeignKey(
@@ -48,3 +48,8 @@ class SubmitAttendance(models.Model):
     date = models.DateField(
       verbose_name='打刻日'
     )
+
+    in_out_dict = dict(IN_OUT)
+
+    def __str__(self):
+        return  str(User.objects.get(id=self.employee_id)) + ' : ' + str(self.in_out_dict[self.in_out])
