@@ -1,0 +1,25 @@
+{% extends "attendance/base.html" %}
+{% block content %}
+
+    {% if user.is_authenticated %}
+        <div class="container">
+            <form method="post" action="{% url 'attendance:result' %}">
+            {% csrf_token %}
+                <h1>{{  user  }} さん</h1>
+                <h2 id="time"></h2>
+                    <script>
+                    time();
+                    function time(){
+                        var now = new Date();
+                        document.getElementById("time").innerHTML = now.toLocaleString();
+                    }
+                    setInterval('time()',1000);
+                    </script>
+                <p>出勤場所：<input type="hidden" name="place">{{ form.place }}</p>
+                <p>IN/OUT：<input type="hidden" name="in_out">{{ form.in_out }}</p>
+                <p><input class="btn btn-primary" type="submit" value="Submit"></p>
+            </form>
+            <a href="../accounts/logout">ログアウト</a>
+        </div>
+    {% endif %}
+{% endblock  %}
