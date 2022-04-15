@@ -1,3 +1,50 @@
+/* color-code */
+/* 
+C2FAF1
+F6F6F6
+DFEFF0
+295E6A
+ */
+ body {
+  background-color: #DFEFF0;
+  margin-top: 5rem;
+}
+
+.card-body {
+  background-color: #F6F6F6;
+}
+
+.card-header, .card-footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 5rem;
+}
+
+.card-header {
+  background-color: #C2FAF1;
+}
+
+.card-footer {
+  background: -moz-linear-gradient(top, #C2FAF1, #DFEFF0);
+  background: -webkit-linear-gradient(top, #C2FAF1, #DFEFF0);
+  background: linear-gradient(to bottom, #C2FAF1, #DFEFF0);
+}
+
+.left-column {
+  margin: auto;
+}
+
+.right-column {
+  margin: 0 auto;
+}
+
+.container {
+  padding: 0;
+  border: rgb(214, 214, 214) solid 4px;
+  border-radius: 10px;
+}
+
 .submit-button {
   color: #fff;
   background-color: #295E6A;
@@ -9,3 +56,31 @@
 .form-button {
   text-align: center;
 }
+
+.result-text {
+  text-align: center;
+}
+
+.back-button {
+  color: #fff;
+  background-color: #295E6A;
+  border-color: #295E6A;
+  margin-right: 0.5rem;
+}
+
+.back-button:hover {
+  color: black;
+}
+
+
+/* ここからtemplates/registration */
+.registration-container {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.registration-button {
+  width: 100%;
+}
+
+
