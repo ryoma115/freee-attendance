@@ -1,6 +1,19 @@
 {% extends 'attendance/base.html' %}
 {% block content %}
-    <p>出勤場所：{{ place }}</p>
-    <p>{{ comment }}</p>
-    <a href="../accounts/logout">ログアウト</a>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            勤怠確認
+        </div>
+        <div class="card-body">
+        <h5 class="card-title">出勤場所：{{ place }}</h5>
+        <p class="card-text">{{ comment }}</p>
+        </div>
+        <div class="card-footer text-muted">
+            <a href="../accounts/logout" class="btnbtn btn-secondary btn-lg disabled" style="text-decoration: none;">
+                ログアウト
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock  %}
