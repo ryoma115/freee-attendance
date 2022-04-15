@@ -1,28 +1,36 @@
 {% extends "registration/base.html" %}
 
 {% block registration_content %}
-<div class="container">
-  <div class="card">
-    <div class="card-header">
-      <h1 class="card-title">ログイン</h1>
-    </div>
-    <div class="card-body">
+<div class="card">
+  <div class="card-header">
+    <h1 class="card-title">ログイン</h1>
+  </div>
+  <div class="card-body">
+    <div class="registration-container">
       {% if user.is_authenticated %}
-      <h5 class="card-title">{{ user.username }}でログイン中</h5>
+      <h5 class="card-title">{{ user.username }}様でログイン中です</h5>
       {% else %}
-      <h5 class="card-title">ログインしてください</h5>
+      <h5 class="card-title">ユーザー名・パスワードを入力してください</h5>
       {% endif %}
       <h5 class="card-title"></h5>
       <form method="post">
         {% csrf_token %}
-        <p><label for="id_username">ユーザー名:</label> <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username"></p>
-        <p><label for="id_password">パスワード:</label> <input type="password" name="password" autocomplete="current-password" required="" id="id_password"></p>
-        <button type="submit" class="btn btn-primary">ログイン</button>
+        <p class="form-floating">
+          <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username" class="form-control">
+          <label for="id_username">ユーザー名:</label>
+        </p>
+        <p class="form-floating">
+          <input type="password" name="password" autocomplete="off" required="" id="id_password" class="form-control">
+          <label for="id_password">パスワード:</label>
+        </p>
+        <p class="form-button">
+          <button type="submit" class="btn submit-button registration-button">ログイン</button>
+        </p>
       </form>
     </div>
-    <div class="card-footer text-muted">
-      何かいれる
-    </div>
+  </div>
+  <div class="card-footer text-muted">
+    <p>アカウントをまだお持ちでない方は　<a href="../signup" class="btnbtn btn-secondary btn-lg disabled" style="text-decoration: none;">こちら</a></p>
   </div>
 </div>
 {% endblock  %}

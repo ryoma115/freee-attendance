@@ -3,14 +3,38 @@
 {% block registration_content %}
 <div class="card">
   <div class="card-header">
-    Featured
+    <h1 class="card-title">アカウント登録</h1>
   </div>
   <div class="card-body">
-    <h5 class="card-title">アカウント登録</h5>
-    <p class="card-text">てきとうになにかいれる</p>
-    <form method="post">
-      {% csrf_token %}
-      {{ form }}
-      <button type="submit">アカウントを登録する</button>
-    </form>
+    <div class="registration-container">
+      <h5 class="card-title">アカウントを登録してください</h5>
+      <form method="post">
+        {% csrf_token %}
+        <p class="form-floating">
+          <input type="text" name="username" maxlength="16" minlength="3" required="" id="id_username" class="form-control">
+          <label for="id_username">Username:</label>
+        </p>
+        <p class="form-floating">
+          <input type="email" name="email" required="" id="id_email" class="form-control">
+          <label for="id_email">Email:</label>
+        </p>
+        <p class="form-floating">
+          <input type="text" name="password" maxlength="255" minlength="6" required="" id="id_password" class="form-control"  autocomplete="off">
+          <label for="id_password">Password:</label>
+        </p>
+        <p class="form-floating">
+          <input type="text" name="confirm_password" maxlength="255" minlength="6" required="" id="id_confirm_password" class="form-control" autocomplete="off">
+          <label for="id_confirm_password">Confirm password:</label>
+        </p>
+        <p class="form-button">
+          <button type="submit" class="btn submit-button registration-button">アカウントを登録する</button>
+        </p>
+      </form>
+    </div>
+  </div>
+  <div class="card-footer text-muted">
+    <p>アカウントをお持ちの方は　<a href="../login" class="btnbtn btn-secondary btn-lg disabled" style="text-decoration: none;">こちら</a></p>
+  </div>
+</div>
+
 {% endblock  %}
