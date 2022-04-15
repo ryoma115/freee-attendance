@@ -1,33 +1,30 @@
-{% extends 'admin/base.html' %}
+{% extends "registration/base.html" %}
 
-{% block content %}
+{% block registration_content %}
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h1 class="card-title">ログイン</h1>
+    </div>
+    <div class="card-body">
+      {% if user.is_authenticated %}
+      <h5 class="card-title">{{ user.username }}でログイン中</h5>
+      {% else %}
+      <h5 class="card-title">ログインしてください</h5>
+      {% endif %}
+      <h5 class="card-title"></h5>
+      <form method="post">
+        {% csrf_token %}
+        <p><label for="id_username">ユーザー名:</label> <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username"></p>
+        <p><label for="id_password">パスワード:</label> <input type="password" name="password" autocomplete="current-password" required="" id="id_password"></p>
+        <button type="submit" class="btn btn-primary">ログイン</button>
+      </form>
+    </div>
+    <div class="card-footer text-muted">
+      何かいれる
+    </div>
+  </div>
+</div>
+{% endblock  %}
 
-{% if form.errors %}
-<p>ユーザー名とパスワードが一致しません。</p>
-{% endif %}
 
-{% if next %}
-    {% if user.is_authenticated %}
-    <p>アクセス権のあるアカウントでログインしてください。</p>
-    {% else %}
-    <p>ログインしてください。</p>
-    {% endif %}
-{% endif %}
-
-<form method="post" action="{% url 'login' %}">
-{% csrf_token %}
-<table class="container">
-<tr>
-    <td>{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
-</tr>
-<tr>
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
-</tr>
-</table>
-
-<input type="submit" value="login" />
-<input type="hidden" name="next" value="{{ next }}" />
-</form>
-{% endblock %}
