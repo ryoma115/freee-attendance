@@ -2,25 +2,62 @@
 {% block content %}
 
     {% if user.is_authenticated %}
-        <div class="container">
-            <form method="post" action="{% url 'attendance:result' %}">
-            {% csrf_token %}
-                <h1>{{  user  }} さん</h1>
-                <h2 id="time"></h2>
-                    <script>
-                    time();
-                    function time(){
-                        var now = new Date();
-                        document.getElementById("time").innerHTML = now.toLocaleString();
-                    }
-                    setInterval('time()',1000);
-                    </script>
-                <p>出勤場所：<input type="hidden" name="place">{{ form.place }}</p>
-                <p>出勤/退勤：<input type="hidden" name="in_out">{{ form.in_out }}</p>
-                <p>備考：{{ form.remarks }}</p>
-                <p><input class="btn btn-primary" type="submit" value="Submit"></p>
-            </form>
-            <a href="../accounts/logout">ログアウト</a>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h3>勤怠打刻</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" action="{% url 'attendance:result' %}">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-5">
+                            <h1 class="card-title">{{  user  }} さん</h1>
+                            <h2 class="card-title" id="time"></h2>
+                                <script>
+                                time();
+                                function time(){
+                                    var now = new Date();
+                                    document.getElementById("time").innerHTML = now.toLocaleString();
+                                }
+                                setInterval('time()',1000);
+                                </script>
+                        </div>
+                        <div class="col-5">
+                            <p class="form-floating">
+                                <select class="form-select" name="place" id="id_place">
+                                    <option value="0">オフィス</option>
+                                    <option value="1">自宅</option>
+                                    <option value="2">コワーキングスペース</option>
+                                    <option value="3">出張先</option>
+                                    <option value="4">その他</option>
+                                </select>
+                                <label for="id_place">出勤場所：</label>
+                            </p>
+                            <p class="form-floating">
+                                <select class="form-select" id="id_in_out" name="in_out">
+                                    <option value="0">出勤</option>
+                                    <option value="1">退勤</option>
+                                    <option value="2">休憩 始</option>
+                                    <option value="3">休憩 終</option>
+                                </select>
+                                <label for="id_in_out">出勤/退勤：</label>
+                            </p>
+                            <p class="form-floating">
+                                <textarea class="form-control" id="id_remarks" name="remarks" cols="50" rows="6" maxlength="300" style="height: 100px"></textarea>
+                                <label for="id_remarks">備考：</label>
+                            </p>
+                            <p>
+                                <input class="btn btn-primary" type="submit" value="Submit">
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-muted">
+                <a href="../accounts/logout" class="btnbtn btn-secondary btn-lg disabled" style="text-decoration: none;">ログアウト</a>
+            </div>
         </div>
+    </div>
     {% endif %}
 {% endblock  %}
