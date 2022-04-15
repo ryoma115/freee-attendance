@@ -5,25 +5,17 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <h3>勤怠打刻</h3>
+                <h1 class="card-title">勤怠打刻</h1>
             </div>
             <div class="card-body">
                 <form method="post" action="{% url 'attendance:result' %}">
                     {% csrf_token %}
                     <div class="row">
-                        <div class="col-5">
+                        <div class="col-5 left-column">
                             <h1 class="card-title">{{  user  }} さん</h1>
-                            <h2 class="card-title" id="time"></h2>
-                                <script>
-                                time();
-                                function time(){
-                                    var now = new Date();
-                                    document.getElementById("time").innerHTML = now.toLocaleString();
-                                }
-                                setInterval('time()',1000);
-                                </script>
+                            <h1 class="card-title" id="time"></h1>
                         </div>
-                        <div class="col-5">
+                        <div class="col-5 right-column">
                             <p class="form-floating">
                                 <select class="form-select" name="place" id="id_place">
                                     <option value="0">オフィス</option>
@@ -47,8 +39,8 @@
                                 <textarea class="form-control" id="id_remarks" name="remarks" cols="50" rows="6" maxlength="300" style="height: 100px"></textarea>
                                 <label for="id_remarks">備考：</label>
                             </p>
-                            <p>
-                                <input class="btn btn-primary" type="submit" value="Submit">
+                            <p class="form-button">
+                                <input class="btn submit-button" type="submit" value="確定" onclick="decision_alert()">
                             </p>
                         </div>
                     </div>
