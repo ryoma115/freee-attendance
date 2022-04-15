@@ -3,13 +3,18 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-            勤怠確認
+            <h1>勤怠確認</h1>
         </div>
-        <div class="card-body">
-        <h5 class="card-title">出勤場所：{{ place }}</h5>
-        <p class="card-text">{{ comment }}</p>
+        <div class="card-body result-text">
+            <div class="result-text-target">
+                <h5 class="card-title">出勤場所：{{ place }}</h5>
+                <p class="card-text">{{ comment }}</p>
+            </div>
         </div>
         <div class="card-footer text-muted">
+            <a href="../" class="btnbtn btn-lg back-button" style="text-decoration: none;">
+                戻る
+            </a>
             <a href="../accounts/logout" class="btnbtn btn-secondary btn-lg disabled" style="text-decoration: none;">
                 ログアウト
             </a>
