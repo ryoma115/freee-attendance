@@ -1,0 +1,16 @@
+{% extends "registration/base.html" %}
+
+{% block registration_content %}
+<div class="card">
+  <div class="card-header">
+    Featured
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">アカウント登録</h5>
+    <p class="card-text">てきとうになにかいれる</p>
+    <form method="post">
+      {% csrf_token %}
+      {{ form }}
+      <button type="submit">アカウントを登録する</button>
+    </form>
+{% endblock  %}
