@@ -6,6 +6,25 @@
       <h1 class="card-title">勤怠表</h1>
     </div>
     <div class="card-body">
+      <div class="attendance-filter-body">
+        <h5 class="card-title">条件：</h5>
+      <form action="" method="get">
+        {% csrf_token %}
+          <p class="form-floating">
+            <select class="form-select" name="keyword">
+              <option selected="">氏名を選んでください</option>
+              {% for user in users %}
+                <option value="{{ user.id }}">{{ user }}</option>
+                {% endfor %}
+            </select>
+            <label for="id_in_out">氏名：</label>
+        </p>
+        <div>
+          <input type="submit" class="btn back-button" value="絞り込み検索" name="search">
+          <input type="button" class="btn btn-secondary" value="絞り込みを外す" onClick="location.href='../lists'">
+        </div>
+      </form>
+      </div>
       <table class="table">
         <thead>
           <tr>
