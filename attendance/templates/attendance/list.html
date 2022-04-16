@@ -1,0 +1,87 @@
+{% extends "attendance/base.html" %}
+{% block content %}
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h1 class="card-title">勤怠表</h1>
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">
+              氏名
+            </th>
+            <th scope="col">
+              勤務地
+            </th>
+            <th scope="col">
+              勤務状況
+            </th>
+            <th scope="col">
+              打刻日
+            </th>
+            <th scope="col">
+              打刻時間
+            </th>
+            <th scope="col">
+              備考欄
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for attendance in attendances %}
+          {% if attendance.in_out == 0 %}
+            <tr class="table-success">
+          {% elif attendance.in_out == 1 %}
+            <tr class="table-danger">
+          {% elif attendance.in_out == 2 %}
+            <tr class="table-primary">
+          {% elif attendance.in_out == 3 %}
+            <tr class="table-warning">
+          {% endif %}
+            <td>{{ attendance.employee }}</td>
+            <td>
+              {% if attendance.place == 0 %}
+                オフィス
+              {% elif attendance.place == 1 %}
+                自宅
+              {% elif attendance.place == 2 %}
+                コワーキングスペース
+              {% elif attendance.place == 3 %}
+                出張先
+              {% else %}
+                その他
+              {% endif %}
+            </td>
+            <td>
+              {% if attendance.in_out == 0 %}
+                出勤
+              {% elif attendance.in_out == 1 %}
+                退勤
+              {% elif attendance.in_out == 2 %}
+                休憩 始
+              {% elif attendance.in_out == 3 %}
+                休憩 終
+              {% endif %}
+            </td>
+            <td>{{ attendance.date }}</td>
+            <td>{{ attendance.time }}</td>
+            <td>
+              {% if attendance.remarks %}
+                {{ attendance.remarks }}
+              {% else %}
+                備考欄なし
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer text-muted">
+      2 days ago
+    </div>
+  </div>
+</div>
+{% endblock %}
