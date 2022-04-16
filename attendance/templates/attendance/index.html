@@ -1,55 +1,57 @@
 {% extends "attendance/base.html" %}
 {% block content %}
 
-    {% if user.is_authenticated %}
-    <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <h1 class="card-title">勤怠管理</h1>
-            </div>
-            <div class="card-body">
-                <form method="post" action="{% url 'attendance:result' %}">
-                    {% csrf_token %}
-                    <div class="row">
-                        <div class="col-5 left-column">
-                            <h1 class="card-title">{{  user  }} さん</h1>
-                            <h1 class="card-title" id="time"></h1>
-                        </div>
-                        <div class="col-5 right-column">
-                            <p class="form-floating">
-                                <select class="form-select" name="place" id="id_place">
-                                    <option value="0">オフィス</option>
-                                    <option value="1">自宅</option>
-                                    <option value="2">コワーキングスペース</option>
-                                    <option value="3">出張先</option>
-                                    <option value="4">その他</option>
-                                </select>
-                                <label for="id_place">出勤場所：</label>
-                            </p>
-                            <p class="form-floating">
-                                <select class="form-select" id="id_in_out" name="in_out">
-                                    <option value="0">出勤</option>
-                                    <option value="1">退勤</option>
-                                    <option value="2">休憩 始</option>
-                                    <option value="3">休憩 終</option>
-                                </select>
-                                <label for="id_in_out">出勤/退勤：</label>
-                            </p>
-                            <p class="form-floating">
-                                <textarea class="form-control" id="id_remarks" name="remarks" cols="50" rows="6" maxlength="300" style="height: 100px"></textarea>
-                                <label for="id_remarks">備考：</label>
-                            </p>
-                            <p class="form-button">
-                                <input class="btn submit-button" type="submit" value="確定" onclick="decision_alert()">
-                            </p>
-                        </div>
+{% if user.is_authenticated %}
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h1 class="card-title">勤怠管理</h1>
+        </div>
+        <div class="card-body">
+            <form method="post" action="{% url 'attendance:result' %}">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-5 left-column">
+                        <h1 class="card-title">{{  user  }} さん</h1>
+                        <h1 class="card-title" id="time"></h1>
                     </div>
-                </form>
-            </div>
-            <div class="card-footer text-muted">
-                <a href="../accounts/logout" class="btnbtn btn-secondary btn-lg disabled" style="text-decoration: none;">ログアウト</a>
-            </div>
+                    <div class="col-5 right-column">
+                        <p class="form-floating">
+                            <select class="form-select" name="place" id="id_place">
+                                <option value="0">オフィス</option>
+                                <option value="1">自宅</option>
+                                <option value="2">コワーキングスペース</option>
+                                <option value="3">出張先</option>
+                                <option value="4">その他</option>
+                            </select>
+                            <label for="id_place">出勤場所：</label>
+                        </p>
+                        <p class="form-floating">
+                            <select class="form-select" id="id_in_out" name="in_out">
+                                <option value="0">出勤</option>
+                                <option value="1">退勤</option>
+                                <option value="2">休憩 始</option>
+                                <option value="3">休憩 終</option>
+                            </select>
+                            <label for="id_in_out">出勤/退勤：</label>
+                        </p>
+                        <p class="form-floating">
+                            <textarea class="form-control" id="id_remarks" name="remarks" cols="50" rows="6" maxlength="300" style="height: 100px"></textarea>
+                            <label for="id_remarks">備考：</label>
+                        </p>
+                        <p class="form-button">
+                            <input class="btn submit-button" type="submit" value="確定" onclick="decision_alert()">
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer text-muted">
+            <a href="../accounts/logout" class="btnbtn btn-secondary btn-lg disabled" style="text-decoration: none;">ログアウト</a>
         </div>
     </div>
-    {% endif %}
-{% endblock  %}
+</div>
+{% endif %}
+{% endblock %}
+
+
