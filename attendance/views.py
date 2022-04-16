@@ -5,6 +5,8 @@ from .models import SubmitAttendance
 from .forms import SubmitAttendanceForm
 from datetime import datetime
 from django.utils import timezone
+from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 class IndexView(LoginRequiredMixin, View):
     def get(self, request):
@@ -16,7 +18,7 @@ class IndexView(LoginRequiredMixin, View):
         return render(request, 'attendance/index.html', context)
 index = IndexView.as_view()
 
-class ResultView(View):
+class ResultView(LoginRequiredMixin, View):
     def post(self, request):
         form = SubmitAttendanceForm(request.POST)
         now = datetime.now()
@@ -43,4 +45,11 @@ class ResultView(View):
         }
         return render(request, 'attendance/result.html', context)
 result = ResultView.as_view()
+
+class attendancesList(LoginRequiredMixin, generic.ListView):
+  model = SubmitAttendance
+  template_name = 'attendance/list.html'
+  context_object_name = 'attendances'
+
+attendancesList = attendancesList.as_view()
 
