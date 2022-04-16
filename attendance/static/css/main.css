@@ -69,7 +69,14 @@ DFEFF0
 }
 
 .back-button:hover {
-  color: black;
+  background-color: #295E6A;
+  border-color: #295E6A;
+  color: #fff;
+}
+
+.attendance-filter-body {
+  margin: 0 auto;
+  width: 40%;
 }
 
 

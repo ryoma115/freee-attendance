@@ -7,6 +7,7 @@ from datetime import datetime
 from django.utils import timezone
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 # Create your views here.
 class IndexView(LoginRequiredMixin, View):
     def get(self, request):
@@ -47,9 +48,24 @@ class ResultView(LoginRequiredMixin, View):
 result = ResultView.as_view()
 
 class attendancesList(LoginRequiredMixin, generic.ListView):
-  model = SubmitAttendance
-  template_name = 'attendance/list.html'
-  context_object_name = 'attendances'
+    model = SubmitAttendance
+    template_name = 'attendance/list.html'
+    context_object_name = 'attendances'
 
+    def get_queryset(self, **kwargs):
+        queryset = super().get_queryset(**kwargs)
+        keyword = self.request.GET.get('keyword')
+        if keyword:
+            select_employee = User.objects.get(id=keyword)
+            queryset = queryset.filter(employee=select_employee)
+        # keywordが取得できない場合
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['users'] = User.objects.all()
+        return context
+    
 attendancesList = attendancesList.as_view()
+
 
