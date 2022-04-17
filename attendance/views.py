@@ -4,10 +4,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import SubmitAttendance
 from .forms import SubmitAttendanceForm
 from datetime import datetime
-from django.utils import timezone
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+
 # Create your views here.
 class IndexView(LoginRequiredMixin, View):
     def get(self, request):
@@ -51,21 +51,30 @@ class attendancesList(LoginRequiredMixin, generic.ListView):
     model = SubmitAttendance
     template_name = 'attendance/list.html'
     context_object_name = 'attendances'
+    ordering = '-date'
 
     def get_queryset(self, **kwargs):
         queryset = super().get_queryset(**kwargs)
         keyword = self.request.GET.get('keyword')
         if keyword:
-            select_employee = User.objects.get(id=keyword)
-            queryset = queryset.filter(employee=select_employee)
+            if 8 == len(str(keyword)):
+                date_datetime = datetime.strptime(str(keyword), '%Y%m%d')
+                filter_date = date_datetime.date()
+                queryset = queryset.filter(date=filter_date)
+            else:    
+                select_employee = User.objects.get(id=keyword)
+                queryset = queryset.filter(employee=select_employee)
         # keywordが取得できない場合
         return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        SubmitAttendances = SubmitAttendance.objects.values_list('date', flat=True)
+        SubmitAttendances = [ i.strftime('%Y%m%d')  for i in SubmitAttendances]
+        unique_submitattendances = set(SubmitAttendances)
+        sorted_unique_SubmitAttendances = sorted(unique_submitattendances, reverse=True)
+        context['days_list'] = sorted_unique_SubmitAttendances
         context['users'] = User.objects.all()
         return context
     
 attendancesList = attendancesList.as_view()
-
-
