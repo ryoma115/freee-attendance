@@ -6,20 +6,30 @@
       <h1 class="card-title">勤怠表</h1>
     </div>
     <div class="card-body">
-      <div class="attendance-filter-body">
-        <h5 class="card-title">条件：</h5>
+      <h5 class="card-title">条件：</h5>
       <form action="" method="get">
         {% csrf_token %}
-          <p class="form-floating">
+        <div class="row" >
+          <p class="form-floating col">
             <select class="form-select" name="keyword">
-              <option selected="">氏名を選んでください</option>
+              <option value=""selected="">氏名を選んでください</option>
               {% for user in users %}
                 <option value="{{ user.id }}">{{ user }}</option>
                 {% endfor %}
             </select>
             <label for="id_in_out">氏名：</label>
-        </p>
-        <div>
+          </p>
+          <p class="form-floating col">
+            <select class="form-select" name="keyword">
+              <option value=""selected="">日付を選んでください</option>
+              {% for day in days_list %}
+                <option value="{{ day }}">{{ day }}</option>
+                {% endfor %}
+            </select>
+            <label for="id_in_out">日付：</label>
+          </p>
+        </div>
+        <div class="sort-button">
           <input type="submit" class="btn back-button" value="絞り込み検索" name="search">
           <input type="button" class="btn btn-secondary" value="絞り込みを外す" onClick="location.href='../lists'">
         </div>
@@ -99,7 +109,9 @@
       </table>
     </div>
     <div class="card-footer text-muted">
-      2 days ago
+      <a href="../accounts/logout" class="btnbtn btn-secondary btn-lg disabled" style="text-decoration: none;">
+        ログアウト
+    </a>
     </div>
   </div>
 </div>
