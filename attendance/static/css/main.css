@@ -89,6 +89,14 @@ table {
   word-break: break-all;
 }
 
+.confirm-delete-body {
+  text-align: center;
+}
+
+.delete-button {
+  padding: 0.8rem 1.6rem;
+}
+
 /* ここからtemplates/registration */
 .registration-container {
   width: 50%;

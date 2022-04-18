@@ -10,14 +10,14 @@
       {% if user.is_authenticated %}
       <h5 class="card-title">{{ user.username }}様でログイン中です</h5>
       {% else %}
-      <h5 class="card-title">ユーザー名・パスワードを入力してください</h5>
+      <h5 class="card-title">氏名・パスワードを入力してください</h5>
       {% endif %}
       <h5 class="card-title"></h5>
       <form method="post">
         {% csrf_token %}
         <p class="form-floating">
           <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username" class="form-control">
-          <label for="id_username">ユーザー名:</label>
+          <label for="id_username">氏名:</label>
         </p>
         <p class="form-floating">
           <input type="password" name="password" autocomplete="off" required="" id="id_password" class="form-control">
