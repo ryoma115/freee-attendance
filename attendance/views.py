@@ -55,16 +55,17 @@ class attendancesList(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self, **kwargs):
         queryset = super().get_queryset(**kwargs)
-        keyword = self.request.GET.get('keyword')
-        if keyword:
-            if 8 == len(str(keyword)):
-                date_datetime = datetime.strptime(str(keyword), '%Y%m%d')
-                filter_date = date_datetime.date()
-                queryset = queryset.filter(date=filter_date)
-            else:    
-                select_employee = User.objects.get(id=keyword)
-                queryset = queryset.filter(employee=select_employee)
-        # keywordが取得できない場合
+        user_keyword = self.request.GET.get('user_keyword')
+        date_keyword = self.request.GET.get('date_keyword')
+        if user_keyword:
+            select_employee = User.objects.get(id=user_keyword)
+            queryset = queryset.filter(employee=select_employee)
+
+        if date_keyword:
+            date_datetime = datetime.strptime(str(date_keyword), '%Y%m%d')
+            filter_date = date_datetime.date()
+            queryset = queryset.filter(date=filter_date)
+            
         return queryset
 
     def get_context_data(self, **kwargs):
