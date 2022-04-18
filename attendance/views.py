@@ -79,3 +79,10 @@ class attendancesList(LoginRequiredMixin, generic.ListView):
         return context
     
 attendancesList = attendancesList.as_view()
+
+class attendanceDelete(generic.DeleteView):
+    template_name = 'attendance/confirm_delete.html'
+    model = SubmitAttendance
+ 
+    success_url = '../../lists'
+attendanceDelete = attendanceDelete.as_view()

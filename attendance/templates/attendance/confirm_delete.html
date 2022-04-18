@@ -1,0 +1,26 @@
+{% extends "attendance/base.html" %}
+{% block content %}
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h1 class="card-title">削除確認</h1>
+    </div>
+    <div class="card-body confirm-delete-body">
+      <form method="post">
+        {% csrf_token %}
+        <h5 class="card-title">本当に削除してもよろしいですか？</h5>
+        <p>＊復元はできません</p>
+        <input type="submit" value="削除する" class="btn btn btn-danger delete-button">
+      </form>
+    </div>
+    <div class="card-footer text-muted">
+      <a href="../../lists" class="btnbtn btn-lg back-button" style="text-decoration: none;">
+        戻る
+    </a>
+    <a href="../../accounts/logout" class="btnbtn btn-secondary btn-lg disabled" style="text-decoration: none;">
+        ログアウト
+    </a>
+    </div>
+  </div>
+</div>
+{% endblock  %}

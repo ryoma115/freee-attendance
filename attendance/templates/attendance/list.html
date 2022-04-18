@@ -73,6 +73,9 @@
             <th scope="col">
               備考欄
             </th>
+            <th scope="col">
+              削除
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -120,6 +123,7 @@
                 備考欄なし
               {% endif %}
             </td>
+            <td><a href="{% url 'attendance:delete' attendance.pk %}" style="text-decoration: none;">✖️</a></td>
           </tr>
           {% endfor %}
         </tbody>
