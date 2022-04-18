@@ -27,17 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-sb%m7769=*4-_2)d1gkfkqs1fb$abg!2g(j4+nq*u8yz1$$57w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-try:
-    from config.local_settings import *
-except ImportError:
-    pass
-
-if not DEBUG:
-    import django_heroku
-    django_heroku.settings(locals())
-
+DEBUG = True
 
 ALLOWED_HOSTS = ["freee-attendance-115.herokuapp.com"]
 
@@ -147,3 +137,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = '/accounts/login' 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL= '/accounts/login' 
+
+try:
+    from config.local_settings import *
+except ImportError:
+    pass
+
+if not DEBUG:
+    import django_heroku
+    django_heroku.settings(locals())
