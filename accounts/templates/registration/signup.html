@@ -12,19 +12,19 @@
         {% csrf_token %}
         <p class="form-floating">
           <input type="text" name="username" maxlength="16" minlength="3" required="" id="id_username" class="form-control">
-          <label for="id_username">Username:</label>
+          <label for="id_username">氏名:</label>
         </p>
         <p class="form-floating">
           <input type="email" name="email" required="" id="id_email" class="form-control">
-          <label for="id_email">Email:</label>
+          <label for="id_email">メールアドレス:</label>
         </p>
         <p class="form-floating">
           <input type="text" name="password" maxlength="255" minlength="6" required="" id="id_password" class="form-control"  autocomplete="off">
-          <label for="id_password">Password:</label>
+          <label for="id_password">パスワード:</label>
         </p>
         <p class="form-floating">
           <input type="text" name="confirm_password" maxlength="255" minlength="6" required="" id="id_confirm_password" class="form-control" autocomplete="off">
-          <label for="id_confirm_password">Confirm password:</label>
+          <label for="id_confirm_password">確認用パスワード:</label>
         </p>
         <p class="form-button">
           <button type="submit" class="btn submit-button registration-button">アカウントを登録する</button>
