@@ -1,0 +1,1 @@
+web: gunicorn freeeattendance.wsgi --log-file -
