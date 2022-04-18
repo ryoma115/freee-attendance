@@ -1,6 +1,23 @@
 {% extends "attendance/base.html" %}
 {% block content %}
 <div class="container">
+  <nav class="navbar navbar-expand-xl navbar-light bg-light">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse show" id="navbarBasic">
+        <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/">ホーム</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link  active" href="/lists">管理表</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../accounts/logout">ログアウト</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
   <div class="card">
     <div class="card-header">
       <h1 class="card-title">勤怠表</h1>
@@ -11,22 +28,22 @@
         {% csrf_token %}
         <div class="row" >
           <p class="form-floating col">
-            <select class="form-select" name="keyword">
-              <option value=""selected="">氏名を選んでください</option>
-              {% for user in users %}
-                <option value="{{ user.id }}">{{ user }}</option>
-                {% endfor %}
-            </select>
-            <label for="id_in_out">氏名：</label>
-          </p>
-          <p class="form-floating col">
-            <select class="form-select" name="keyword">
+            <select class="form-select" name="date_keyword">
               <option value=""selected="">日付を選んでください</option>
               {% for day in days_list %}
                 <option value="{{ day }}">{{ day }}</option>
-                {% endfor %}
+              {% endfor %}
             </select>
-            <label for="id_in_out">日付：</label>
+            <label for="">日付：</label>
+          </p>
+          <p class="form-floating col">
+            <select class="form-select" name="user_keyword">
+              <option value=""selected="">氏名を選んでください</option>
+              {% for user in users %}
+                <option value="{{ user.id }}">{{ user }}</option>
+              {% endfor %}
+            </select>
+            <label for="">氏名：</label>
           </p>
         </div>
         <div class="sort-button">
@@ -98,7 +115,7 @@
             <td>{{ attendance.time }}</td>
             <td>
               {% if attendance.remarks %}
-                {{ attendance.remarks }}
+                {{ attendance.remarks|linebreaksbr }}
               {% else %}
                 備考欄なし
               {% endif %}

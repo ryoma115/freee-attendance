@@ -79,6 +79,16 @@ DFEFF0
   text-align: center;
 }
 
+/* html5推奨 */
+.table {
+  width: 100%;
+}
+
+table {
+  table-layout: fixed;
+  word-break: break-all;
+}
+
 /* ここからtemplates/registration */
 .registration-container {
   width: 50%;
@@ -88,5 +98,3 @@ DFEFF0
 .registration-button {
   width: 100%;
 }
-
-
