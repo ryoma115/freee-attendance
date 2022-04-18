@@ -1,8 +1,23 @@
 {% extends "attendance/base.html" %}
 {% block content %}
-
-{% if user.is_authenticated %}
 <div class="container">
+    <nav class="navbar navbar-expand-xl navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse show" id="navbarBasic">
+                <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">ホーム</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/lists">管理表</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../accounts/logout">ログアウト</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div class="card">
         <div class="card-header">
             <h1 class="card-title">勤怠管理</h1>
@@ -51,7 +66,6 @@
         </div>
     </div>
 </div>
-{% endif %}
 {% endblock %}
 
 
