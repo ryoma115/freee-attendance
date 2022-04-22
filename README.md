@@ -1,5 +1,5 @@
 # URL
-https://dashboard.heroku.com/apps/freee-attendance-115
+https://freee-attendance-115.herokuapp.com/
 
 # アピールしたいこと
 ### 成長・学習力の速さ
