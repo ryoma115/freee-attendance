@@ -30,6 +30,7 @@ SECRET_KEY = 'django-insecure-sb%m7769=*4-_2)d1gkfkqs1fb$abg!2g(j4+nq*u8yz1$$57w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
 ALLOWED_HOSTS = ["freee-attendance-115.herokuapp.com"]
 
 
