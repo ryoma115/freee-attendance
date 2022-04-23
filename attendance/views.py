@@ -68,7 +68,6 @@ class attendancesList(LoginRequiredMixin, generic.ListView):
             
         return queryset
 
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         SubmitAttendances = SubmitAttendance.objects.values_list('date', flat=True)
