@@ -71,7 +71,7 @@ class attendancesList(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         SubmitAttendances = SubmitAttendance.objects.values_list('date', flat=True)
-        SubmitAttendances = [ i.strftime('%Y/%m/%d')  for i in SubmitAttendances]
+        SubmitAttendances = [ i.strftime('%Y%m%d')  for i in SubmitAttendances]
         unique_submitattendances = set(SubmitAttendances)
         sorted_unique_SubmitAttendances = sorted(unique_submitattendances, reverse=True)
         context['days_list'] = sorted_unique_SubmitAttendances
